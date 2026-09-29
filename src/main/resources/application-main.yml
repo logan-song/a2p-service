@@ -1,0 +1,37 @@
+server:
+  port: 9082
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 50
+    keep-alive-timeout: 20000
+    max-connections: 100
+  compression:
+    enabled: true
+    mime-types: text/html,text/plain,text/xml,application/json,application/xml
+    min-response-size: 1024
+
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 3000
+      maximum-pool-size: 100
+      minimum-idle: 10
+      idle-timeout: 600000
+      max-lifetime: 1800000
+    url: jdbc:mysql://192.168.3.5:3307/service?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: service
+    password: tour1685!@
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        highlight_sql: true
+        format_sql: true
+        show_sql: true
+        transaction:
+          jta:
+          platform: org.hibernate.service.jta.JtaPlatform

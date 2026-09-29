@@ -1,0 +1,32 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    prefix: classpath:/templates/
+
+field-crypto:
+  aes256:
+    secret-key: 3yXUHogXFSf4R1KdTI12shEJdyKWva6a
+
+auth:
+  jjwt:
+    access:
+      signature-algorithm: HS256
+      signature-key: JMFh8xaap5erAKw6VtEtNMLPmnNa4CbFX2ZXXS0G0Wn60kM8 # Access Token 비밀키
+      admin-signature-key: SZF0JOoux1HtRXQT92dXzwy6wdJzbZtc3ibFZKNhrtmC62Ir
+      # 임시로 액세스 토큰 시간 늘림 (60분)
+      expiration: 3600000 # Access Token 만료 시간(ms) 10분
+    refresh:
+      signature-algorithm: HS256
+      signature-key: y2Ihqlq6Cl1qIytfVwxgbDllh2751S8JufgH7niC8CZ121CL # Refresh Token 비밀키
+      admin-signature-key: eGP0ZVBtzNKOk8KlxXZ0fNTKjDxVySoeDxJm4ozdlAyNNRuv
+      expiration: 10800000 # Refresh Token 만료 시간(ms) 3시간
+      max-expiration: 345600000 # 최대 수명(ms) 4일
+    password-reset:
+      signature-algorithm: HS256
+      signature-key: NMqpDUTuuJHfgP9w7koZzp5uCHB1n3/lYU35UAk7wIs=
+      expiration: 1800000

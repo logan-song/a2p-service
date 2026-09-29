@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+        data-theme="light"
+        th:fragment="layout(pageTitle, pageCss, pageScript, content)"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>A2P 서비스</title>
+    <link rel="stylesheet" th:href="@{/css/pretendard.css}">
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <th:block th:replace="${pageCss}"></th:block>
+</head>
+<body>
+<div class="desktop-download-layer" hidden id="desktopDownload">
+    <span>최적화된 Windows용 노트 앱을 설치하세요.</span>
+    <a class="desktop-download-link"
+       href="http://192.168.2.6:8081/repository/a2p-note-app/A2PNoteSetup.exe">
+        다운로드
+    </a>
+    <button aria-label="다운로드 안내 닫기" class="desktop-download-close"
+            id="desktopDownloadClose" type="button"></button>
+</div>
+<div class="container">
+    <header>
+        <div class="section-header">
+            <h1 class="page-title" th:replace="${pageTitle}">A2P</h1>
+            <button aria-label="테마 전환" id="themeToggle">
+                <span aria-hidden="true" id="themeIcon">☀️</span>
+            </button>
+        </div>
+    </header>
+    <main>
+        <th:block th:replace="${content}"></th:block>
+    </main>
+</div>
+<th:block th:replace="${pageScript}"></th:block>
+<script th:src="@{/js/app.js}" type="module"></script>
+</body>
+</html>

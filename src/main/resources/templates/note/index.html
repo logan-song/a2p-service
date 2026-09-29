@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html
+        th:replace="layout/app :: layout( ~{::title}, ~{::css}, ~{::script}, ~{::content})"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/note.css}">
+        <link rel="stylesheet" th:href="@{/css/dialog.css}">
+        <link rel="stylesheet" th:href="@{/css/tooltip.css}">
+    </th:block>
+</head>
+<body>
+<header>
+    <div class="section-header">
+        <div class="page-title-area" th:fragment="title">
+            <h1 class="page-title"
+                th:text="'Note - ' + ${data.getNote().getUser().getName()}">
+                Note</h1>
+            <div class="viewer-presence" hidden id="viewers">
+                <span aria-hidden="true" class="viewer-eyes">
+                    <span class="viewer-eye"><span class="viewer-pupil"></span></span>
+                    <span class="viewer-eye"><span class="viewer-pupil"></span></span>
+                </span>
+                <span id="viewerExtra"></span>
+                <div class="viewer-tooltip">
+                    <strong>염탐중인 사람</strong>
+                    <div id="viewerList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<th:block th:fragment="content">
+    <div class="info-layer">
+        <div class="btn-area">
+            <!--            <div class="btn btn-refresh" id="refresh">🔃 최신화하기</div>-->
+            <div class="select">
+                <select name="user">
+                    <option>👀 염탐하기...</option>
+                    <option th:each="item : ${data.getUsers()}"
+                            th:if="${!item.getId().equals(data.getNote().getUser().getId())}"
+                            th:text="${item.getName()}"
+                            th:value="${item.getId()}"></option>
+                </select>
+            </div>
+            <div class="btn btn-default" id="default">
+                <input id="owner"
+                       type="checkbox"/>
+                <label for="owner">내 노트</label>
+            </div>
+        </div>
+        <div class="content-actions">
+            <div class="tooltip-trigger"
+                 data-tooltip-type="counter"
+                 data-tooltip-position="top">
+                <div aria-label="글자 수" aria-valuemax="10000" aria-valuemin="0"
+                     aria-valuenow="0" id="counter" role="progressbar">
+                    <span class="counter-current" id="counterCurrent">0자</span>
+                </div>
+            </div>
+            <div class="btn btn-trash" id="clear">🧹 비우기</div>
+        </div>
+    </div>
+    <div class="note-area">
+        <div class="note-wrapper">
+            <pre id="highlight"></pre>
+            <textarea id="note"
+                      th:data-user="${data.note.user.getId()}"
+                      th:text="${data.note.content}"></textarea>
+            <div class="search-area" id="searchContainer">
+                <input id="searchInput">
+                <button id="searchPrev">▲</button>
+                <button id="searchNext">▼</button>
+                <span id="searchCount"></span>
+            </div>
+        </div>
+    </div>
+    <dialog class="app-dialog" id="appDialog">
+        <p id="appDialogMessage"></p>
+        <form method="dialog">
+            <button class="btn btn-primary" id="appDialogConfirm"
+                    value="confirm">확인
+            </button>
+            <button class="btn btn-default" id="appDialogCancel" value="cancel">
+                취소
+            </button>
+        </form>
+    </dialog>
+</th:block>
+<th:block th:fragment="script">
+    <script th:src="@{/js/lib/stomp.min.js}"></script>
+    <script type="module">
+        import {initNote} from "/js/note.js";
+
+        initNote();
+    </script>
+</th:block>
+</body>
+</html>

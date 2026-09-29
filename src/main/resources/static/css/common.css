@@ -1,0 +1,205 @@
+@import url("pretendard.css");
+
+:root {
+    --bg: #ebebeb;
+    --text: #111;
+    --border: #333;
+    --hover: #f3f4f6;
+    --accent: #198754;
+    --inputbg: #9b9f9e;
+}
+
+[data-theme="dark"] {
+    --bg: #212529;
+    --text: #eee;
+    --border: #3a3a3a;
+    --hover: #2a2a2a;
+    --accent: #20c997;
+    --inputbg: #9b9f9e;
+}
+
+#themeToggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #9E9E9E;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.desktop-download-layer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    margin: 0;
+    padding: 6px 10px;
+    gap: 10px;
+    color: var(--text);
+    background: rgba(255, 255, 255, .45);
+    border-bottom: 1px solid var(--accent);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+    font-size: 13px;
+}
+
+.desktop-download-link {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 26px;
+    padding: 0 9px;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: filter .15s;
+}
+
+.desktop-download-link:hover {
+    filter: brightness(.9);
+}
+
+.desktop-download-close {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    font-size: 0;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.desktop-download-close::before,
+.desktop-download-close::after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 17px;
+    height: 2px;
+    content: "";
+    background: var(--text);
+    border-radius: 2px;
+}
+
+.desktop-download-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.desktop-download-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.desktop-download-layer[hidden] {
+    display: none;
+}
+
+[data-theme="dark"] .desktop-download-layer {
+    background: rgba(255, 255, 255, .06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+}
+
+#themeIcon {
+    display: block;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+[data-theme="dark"] #themeToggle {
+    background-color: #333333;
+}
+
+html {
+    font-family: Pretendard, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Pretendard", serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    position: relative;
+    flex: 1;
+}
+
+.container {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.page-title {
+    margin: 10px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+    background-color: #666;
+}
+
+.select select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(6px);
+}
+
+.select select option {
+    background-color: var(--bg);
+    color: var(--text);
+}

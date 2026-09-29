@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html
+        th:replace="layout/app :: layout( ~{::title}, ~{::css}, ~{::script}, ~{::content})"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <th:block th:fragment="css">
+        <link rel="stylesheet" th:href="@{/css/note-setup.css}">
+    </th:block>
+</head>
+<body>
+<header>
+    <div class="section-header">
+        <h1 class="page-title" th:fragment="title">Note</h1>
+    </div>
+</header>
+<th:block th:fragment="content">
+    <div class="setup">
+        <div class="setup-card">
+            <h1>당신은 누구인가요?</h1>
+            <div class="select">
+                <select id="username">
+                    <option>선택하기</option>
+                    <option th:each="item : ${data.getUsers()}"
+                            th:text="${item.getName()}"
+                            th:value="${item.getId()}"></option>
+                </select>
+            </div>
+            <button class="btn-start">시작하기</button>
+        </div>
+    </div>
+</th:block>
+<th:block th:fragment="script">
+    <script type="module">
+        import {initNoteSetup} from "/js/note-setup.js";
+
+        initNoteSetup();
+    </script>
+</th:block>
+</body>
+</html>
